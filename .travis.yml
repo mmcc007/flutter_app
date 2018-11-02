@@ -4,7 +4,7 @@ jobs:
     - stage: Unit Testing
       language: generic
       os: linux
-      env: UNIT-TESTS
+      env: running unit and widget tests with code coverage
       before_script:
         - sudo apt-get install -y --no-install-recommends lib32stdc++6 libstdc++6 > /dev/null
         - git clone https://github.com/flutter/flutter.git -b beta
@@ -14,7 +14,7 @@ jobs:
         - flutter doctor -v
         - pub global activate coverage
       script: flutter test --coverage
-      after_success: bash <(curl -s https://codecov.io/bash) -f lcov.info
+      after_success: bash <(curl -s https://codecov.io/bash) -f coverage/lcov.info
 
     - &integration-test-stage
       stage: Integration Testing
@@ -22,7 +22,7 @@ jobs:
       dist: trusty
       language: generic
       os: linux
-      env: bloc_flutter_android
+      env: running driver on emulator
       # Run integration tests on android
       before_install:
         - sudo apt-get install -y --no-install-recommends lib32stdc++6 libstdc++6 > /dev/null
@@ -53,6 +53,14 @@ jobs:
         - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window -gpu swiftshader &
         # install flutter
         - git clone https://github.com/flutter/flutter.git -b beta
+
+        # temporary fix for build problem with beta branch (flutter.gradle is accessing repositories in wrong order)
+        # a jar file is missing from the first repository and gradle is not finding it in the second repository
+        # switching order of repository search to fix
+        # (assumes pinned beta version, at some point in future this fix should be removed and beta unpinned)
+        - cd flutter; git checkout v0.9.4; cd ..
+        - sed -i -n '21{h; d}; 24{p; x;}; p' flutter/packages/flutter_tools/gradle/flutter.gradle
+
         - export PATH="$PATH":"$HOME/.pub-cache/bin"
         - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
         - flutter precache
@@ -66,7 +74,7 @@ jobs:
       os: osx
       # use oldest flutter supported version of xcode
       osx_image: xcode8.0
-      env: bloc_flutter_ios
+      env: running driver on simulator
       # Run integration tests on ios
       before_install:
         - open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app

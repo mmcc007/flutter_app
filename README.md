@@ -4,7 +4,8 @@
 
 # flutter_app
 
-The counter Flutter app demonstrating how to run unit, widget and end-to-end integration testing for android and ios
+The counter Flutter app demonstrating how to run unit, widget and end-to-end integration testing 
+for android and ios with code coverage
 
 ## Getting Started
 
