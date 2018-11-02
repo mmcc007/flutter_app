@@ -14,7 +14,10 @@ void main() {
 
     setUpAll(() async {
       // Connect to a running Flutter application instance.
-      driver = await FlutterDriver.connect(isolateReadyTimeout: timeout);
+      driver = await FlutterDriver.connect(
+        isolateReadyTimeout: timeout,
+        printCommunication: true,
+      );
     });
 
     tearDownAll(() async {
