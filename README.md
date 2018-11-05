@@ -4,6 +4,8 @@
 
 # flutter_app
 
+Update: see this [article](https://medium.com/@nocnoc/flutter-unit-widget-and-integration-testing-with-ios-and-android-emulators-on-travis-ci-df17ed7c3be) on Medium about setting up continuous integration for Flutter on Travis
+
 The counter Flutter app demonstrating how to run unit, widget and end-to-end integration testing 
 for android and ios with code coverage
 
