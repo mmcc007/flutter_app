@@ -22,7 +22,9 @@ jobs:
       dist: trusty
       language: generic
       os: linux
-      env: running driver on emulator
+      env:
+        - EMULATOR_API_LEVEL=19
+        - ANDROID_ABI="default;armeabi-v7a"
       # Run integration tests on android
       before_install:
         - sudo apt-get install -y --no-install-recommends lib32stdc++6 libstdc++6 > /dev/null
@@ -45,8 +47,8 @@ jobs:
         # install older packages (for emulator)
         - sdkmanager "build-tools;25.0.2" "platforms;android-25" > /dev/null
         # Create and start emulator.
-        - EMULATOR_API_LEVEL=21
-        - ANDROID_ABI="default;armeabi-v7a"
+#        - EMULATOR_API_LEVEL=21
+#        - ANDROID_ABI="default;armeabi-v7a"
         - sdkmanager "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI" > /dev/null
         - sdkmanager --list | head -15
         - echo no | avdmanager create avd --force -n test -k "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI"
@@ -70,26 +72,61 @@ jobs:
         - adb shell input keyevent 82
         - flutter devices
       script: travis_retry flutter -v drive test_driver/main.dart
-    - <<: *integration-test-stage
-      os: osx
-      # use oldest flutter supported version of xcode
-      osx_image: xcode8.0
-      env: running driver on simulator
-      # Run integration tests on ios
-      before_install:
-        - open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app
-        - brew update
-        - brew install libimobiledevice
-        - brew install ideviceinstaller
-        - brew install ios-deploy
-        - brew install cocoapods || echo 'ignore exit(1)'
-        - brew link --overwrite cocoapods
-        - git clone https://github.com/flutter/flutter.git -b beta
-        - export PATH="$PATH":"$HOME/.pub-cache/bin"
-        - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
-        - flutter precache
-        - flutter doctor -v
-        - flutter devices
+#    - <<: *integration-test-stage
+#      os: osx
+#      # use oldest flutter supported version of xcode
+#      osx_image: xcode8.0
+#      env: running driver on simulator
+#      # Run integration tests on ios
+#      before_install:
+#        - open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app
+#        - brew update
+#        - brew install libimobiledevice
+#        - brew install ideviceinstaller
+#        - brew install ios-deploy
+#        - brew install cocoapods || echo 'ignore exit(1)'
+#        - brew link --overwrite cocoapods
+#        - git clone https://github.com/flutter/flutter.git -b beta
+#        - export PATH="$PATH":"$HOME/.pub-cache/bin"
+#        - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
+#        - flutter precache
+#        - flutter doctor -v
+#        - flutter devices
+
+    - <<: *integration-test-staging
+      env:
+        - EMULATOR_API_LEVEL=22
+        - ANDROID_ABI="google_apis;armeabi-v7a"
+
+    - <<: *integration-test-staging
+      env:
+        - EMULATOR_API_LEVEL=23
+        - ANDROID_ABI="google_apis;armeabi-v7a"
+
+    - <<: *integration-test-staging
+      env:
+        - EMULATOR_API_LEVEL=24
+        - ANDROID_ABI="google_apis;armeabi-v7a"
+
+    - <<: *integration-test-staging
+      env:
+        - EMULATOR_API_LEVEL=24
+        - ANDROID_ABI="google_apis;arm64-v8a"
+
+    - <<: *integration-test-staging
+      env:
+        - EMULATOR_API_LEVEL=24
+        - ANDROID_ABI="google_apis;arm64-v8a"
+
+    - <<: *integration-test-staging
+      env:
+        - EMULATOR_API_LEVEL=25
+        - ANDROID_ABI="google_apis;armeabi-v7a"
+
+    - <<: *integration-test-staging
+      env:
+        - EMULATOR_API_LEVEL=25
+        - ANDROID_ABI="google_apis;arm64-v8a"
 
     - stage: Ready to deploy
       os: osx
