@@ -1,20 +1,20 @@
 jobs:
   include:
 
-    - stage: Unit Testing
-      language: generic
-      os: linux
-      env: running unit and widget tests with code coverage
-      before_script:
-        - sudo apt-get install -y --no-install-recommends lib32stdc++6 libstdc++6 > /dev/null
-        - git clone https://github.com/flutter/flutter.git -b beta
-        - export PATH="$PATH":"$HOME/.pub-cache/bin"
-        - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
-        - flutter precache
-        - flutter doctor -v
-        - pub global activate coverage
-      script: flutter test --coverage
-      after_success: bash <(curl -s https://codecov.io/bash) -f coverage/lcov.info
+#    - stage: Unit Testing
+#      language: generic
+#      os: linux
+#      env: running unit and widget tests with code coverage
+#      before_script:
+#        - sudo apt-get install -y --no-install-recommends lib32stdc++6 libstdc++6 > /dev/null
+#        - git clone https://github.com/flutter/flutter.git -b beta
+#        - export PATH="$PATH":"$HOME/.pub-cache/bin"
+#        - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
+#        - flutter precache
+#        - flutter doctor -v
+#        - pub global activate coverage
+#      script: flutter test --coverage
+#      after_success: bash <(curl -s https://codecov.io/bash) -f coverage/lcov.info
 
     - &integration-test-stage
       stage: Integration Testing
@@ -45,7 +45,7 @@ jobs:
         # install older packages (for emulator)
         - sdkmanager "build-tools;25.0.2" "platforms;android-25" > /dev/null
         # Create and start emulator.
-        - EMULATOR_API_LEVEL=22
+        - EMULATOR_API_LEVEL=21
         - ANDROID_ABI="default;armeabi-v7a"
         - sdkmanager "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI" > /dev/null
         - sdkmanager --list | head -15
