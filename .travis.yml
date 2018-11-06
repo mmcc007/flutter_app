@@ -23,7 +23,7 @@ jobs:
       language: generic
       os: linux
       env:
-        - EMULATOR_API_LEVEL=19
+        - EMULATOR_API_LEVEL=18
         - ANDROID_ABI="default;armeabi-v7a"
       # Run integration tests on android
       before_install:
@@ -93,10 +93,11 @@ jobs:
 #        - flutter doctor -v
 #        - flutter devices
 
-#    - <<: *integration-test-staging
-#      env:
-#        - EMULATOR_API_LEVEL=22
-#        - ANDROID_ABI="google_apis;armeabi-v7a"
+    - <<: *integration-test-staging
+      os: linux
+      env:
+        - EMULATOR_API_LEVEL=22
+        - ANDROID_ABI="google_apis;armeabi-v7a"
 #
 #    - <<: *integration-test-staging
 #      env:
