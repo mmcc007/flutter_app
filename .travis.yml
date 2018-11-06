@@ -101,37 +101,37 @@ jobs:
         - ANDROID_ABI="google_apis;armeabi-v7a"
 
 
-    - <<: *integration-test-staging
+    - <<: *integration-test-stage
       os: linux
       env:
         - EMULATOR_API_LEVEL=23
         - ANDROID_ABI="google_apis;armeabi-v7a"
 
-    - <<: *integration-test-staging
+    - <<: *integration-test-stage
       os: linux
       env:
         - EMULATOR_API_LEVEL=24
         - ANDROID_ABI="google_apis;armeabi-v7a"
 
-    - <<: *integration-test-staging
+    - <<: *integration-test-stage
       os: linux
       env:
         - EMULATOR_API_LEVEL=24
         - ANDROID_ABI="google_apis;arm64-v8a"
 
-    - <<: *integration-test-staging
+    - <<: *integration-test-stage
       os: linux
       env:
         - EMULATOR_API_LEVEL=24
         - ANDROID_ABI="google_apis;arm64-v8a"
 
-    - <<: *integration-test-staging
+    - <<: *integration-test-stage
       os: linux
       env:
         - EMULATOR_API_LEVEL=25
         - ANDROID_ABI="google_apis;armeabi-v7a"
 
-    - <<: *integration-test-staging
+    - <<: *integration-test-stage
       os: linux
       env:
         - EMULATOR_API_LEVEL=25
