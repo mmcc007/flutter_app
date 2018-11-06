@@ -95,10 +95,10 @@ jobs:
 
 
     - <<: *integration-test-stage
-      os: osx
-      # use oldest flutter supported version of xcode
-      osx_image: xcode8.0
-      env: running driver on simulator
+      os: linux
+      env:
+        - EMULATOR_API_LEVEL=22
+        - ANDROID_ABI="google_apis;armeabi-v7a"
       # Run integration tests on ios
       before_install:
         - open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app
