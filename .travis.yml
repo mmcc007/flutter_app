@@ -92,13 +92,12 @@ jobs:
 #        - flutter precache
 #        - flutter doctor -v
 #        - flutter devices
-
     - <<: *integration-test-staging
-#    - <<: *integration-test-staging
-#      os: linux
-#      env:
-#        - EMULATOR_API_LEVEL=22
-#        - ANDROID_ABI="google_apis;armeabi-v7a"
+      os: linux
+      env:
+        - EMULATOR_API_LEVEL=22
+        - ANDROID_ABI="google_apis;armeabi-v7a"
+      script: echo Done
 
 #
 #    - <<: *integration-test-staging
