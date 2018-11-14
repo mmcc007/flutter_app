@@ -17,6 +17,7 @@ void main() {
       driver = await FlutterDriver.connect(
         isolateReadyTimeout: timeout,
         printCommunication: true,
+        timeoutMultiplier: 4,
       );
     });
 
