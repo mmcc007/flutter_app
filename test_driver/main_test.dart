@@ -10,13 +10,11 @@ import 'package:test/test.dart';
 void main() {
   group('end-to-end test', () {
     FlutterDriver driver;
-    final timeout = Duration(seconds: 20);
 
     setUpAll(() async {
       // Connect to a running Flutter application instance.
       driver = await FlutterDriver.connect(
-        isolateReadyTimeout: timeout,
-        printCommunication: true,
+        timeoutMultiplier: 4,
       );
     });
 
@@ -29,13 +27,13 @@ void main() {
       SerializableFinder fab = find.byTooltip('Increment');
 
       // Wait for the floating action button to appear
-      await driver.waitFor(fab, timeout: timeout);
+      await driver.waitFor(fab);
 
       // Tap on the fab
-      await driver.tap(fab, timeout: timeout);
+      await driver.tap(fab);
 
       // Wait for text to change to the desired value
-      await driver.waitFor(find.text('1'), timeout: timeout);
+      await driver.waitFor(find.text('1'));
     });
   });
 }
