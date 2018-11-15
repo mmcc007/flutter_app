@@ -15,6 +15,7 @@ void main() {
       // Connect to a running Flutter application instance.
       driver = await FlutterDriver.connect(
         timeoutMultiplier: 4,
+        printCommunication: true,
       );
     });
 
