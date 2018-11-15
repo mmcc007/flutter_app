@@ -54,7 +54,8 @@ jobs:
         - echo no | avdmanager create avd --force -n test -k "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI"
         - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window -gpu swiftshader &
         # install flutter
-        - git clone https://github.com/flutter/flutter.git -b beta
+        #- git clone https://github.com/flutter/flutter.git -b beta
+        - git clone https://github.com/flutter/flutter.git -b master
 
 #        # temporary fix for build problem with beta branch (flutter.gradle is accessing repositories in wrong order)
 #        # a jar file is missing from the first repository and gradle is not finding it in the second repository
@@ -63,7 +64,7 @@ jobs:
 #        - cd flutter; git checkout v0.9.4; cd ..
 #        - sed -i -n '21{h; d}; 24{p; x;}; p' flutter/packages/flutter_tools/gradle/flutter.gradle
 
-        - cd flutter; git pull origin pull/24066/head; cd ..
+        #- cd flutter; git pull origin pull/24066/head; cd ..
 
         - export PATH="$PATH":"$HOME/.pub-cache/bin"
         - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
