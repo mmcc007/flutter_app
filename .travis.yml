@@ -53,7 +53,7 @@ jobs:
         - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window -gpu swiftshader -cpu-delay 0 -no-boot-anim -qemu [N|auto] &
         # install flutter
         #- git clone https://github.com/flutter/flutter.git -b beta
-        - git clone https://github.com/flutter/flutter.git -b master
+        - git clone https://github.com/flutter/flutter.git -b stable
         - export PATH="$PATH":"$HOME/.pub-cache/bin"
         - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
         - flutter precache
