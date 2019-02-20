@@ -69,7 +69,7 @@ jobs:
         - ./script/android-wait-for-emulator.sh
         - adb shell input keyevent 82
         - flutter devices
-      script: travis_retry flutter -v drive test_driver/main.dart
+      script: travis_retry flutter driver test_driver/main.dart
     - <<: *integration-test-stage
       os: osx
       # use oldest flutter supported version of xcode
