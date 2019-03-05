@@ -9,6 +9,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('end-to-end test', () {
+    final timeout=Duration(seconds: 20);
     FlutterDriver driver;
 
     setUpAll(() async {
@@ -26,13 +27,13 @@ void main() {
       SerializableFinder fab = find.byTooltip('Increment');
 
       // Wait for the floating action button to appear
-      await driver.waitFor(fab);
+      await driver.waitFor(fab, timeout: timeout);
 
       // Tap on the fab
-      await driver.tap(fab);
+      await driver.tap(fab, timeout: timeout);
 
       // Wait for text to change to the desired value
-      await driver.waitFor(find.text('1'));
+      await driver.waitFor(find.text('1'), timeout: timeout);
     });
   });
 }
