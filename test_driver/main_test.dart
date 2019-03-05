@@ -9,7 +9,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('end-to-end test', () {
-    final timeout=Duration(seconds: 20);
+    final timeout = Duration(seconds: 20);
     FlutterDriver driver;
 
     setUpAll(() async {
