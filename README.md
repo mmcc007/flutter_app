@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mmcc007/flutter_app.svg?branch=master)](https://travis-ci.org/mmcc007/flutter_app)
+[![Build Status](https://travis-ci.com/mmcc007/flutter_app.svg?branch=master)](https://travis-ci.com/mmcc007/flutter_app)
 [![codecov](https://codecov.io/gh/mmcc007/flutter_app/branch/master/graph/badge.svg)](https://codecov.io/gh/mmcc007/flutter_app)
 
 
